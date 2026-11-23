@@ -201,3 +201,11 @@ create policy "Empresa cambia el estatus" on public.solicitudes
 
 revoke update on public.solicitudes from anon, authenticated;
 grant update (estatus) on public.solicitudes to authenticated;
+
+grant usage on schema public to anon, authenticated;
+grant select on public.perfiles, public.vacantes, public.solicitudes to anon, authenticated;
+grant insert on public.vacantes, public.solicitudes to authenticated;
+grant update on public.vacantes to authenticated;
+grant usage, select on all sequences in schema public to authenticated;
+grant execute on function public.mi_rol(), public.candidato_aprobado(), public.candidato_aplico(bigint),
+  public.empresa_ve_candidato(uuid), public.vacante_activa(bigint) to anon, authenticated;
