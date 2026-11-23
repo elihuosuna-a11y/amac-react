@@ -38,32 +38,7 @@ Con José se puede ver que un candidato sin aprobar no puede postularse. Si entr
 - Vercel para publicarla; cada vez que subimos cambios a `main` se actualiza sola
 - El mismo CSS que hicimos en la Entrega 2, sin Bootstrap ni Tailwind
 
-## Cómo correrlo en tu computadora
 
-Necesitas tener Node.js 20 o más nuevo.
-
-```bash
-git clone https://github.com/elihuosuna-a11y/amac-react.git
-cd amac-react
-npm install
-```
-
-Haz una copia de `.env.example`, llámala `.env.local` y pon ahí la URL y la publishable key de tu proyecto de Supabase (están en Project Settings → API Keys):
-
-```
-VITE_SUPABASE_URL=https://xxxxxxxx.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_xxxxxxxx
-```
-
-Luego corre:
-
-```bash
-npm run dev
-```
-
-y entra a http://localhost:5173. El `.env.local` no se sube a GitHub porque está en el `.gitignore`.
-
-Si quieres armar la base de datos desde cero, en Supabase ve a SQL Editor y corre `supabase/esquema.sql`. Después crea las cuatro cuentas desde la página y al final corre `supabase/datos-ejemplo.sql`, que agrega las vacantes de ejemplo, aprueba a María y le da permisos de administrador a la cuenta de AMAC.
 
 ## Cómo está organizado el código
 
