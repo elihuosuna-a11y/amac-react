@@ -1,6 +1,8 @@
-update public.perfiles
-set aprobado = true
-where id = (select id from auth.users where email = 'candidato.aprobado@amac-prueba.com');
+update public.perfiles set aprobado = true
+where id = (select id from auth.users where email = 'maria.trevino@correo-prueba.mx');
+
+update public.perfiles set rol = 'admin', aprobado = true
+where id = (select id from auth.users where email = 'coordinacion@amac-nl.mx');
 
 insert into public.vacantes
   (empresa_id, titulo, sueldo, ubicacion, horario, categoria,
@@ -45,4 +47,4 @@ cross join (values
    E'Prestaciones de ley',
    null, 'pausada')
 ) as v(titulo, sueldo, ubicacion, horario, categoria, descripcion, requisitos, prestaciones, telefono, estado)
-where u.email = 'empresa.demo@amac-prueba.com';
+where u.email = 'rh@serviciosdelnorte.mx';
