@@ -18,7 +18,7 @@ AMAC es una bolsa de trabajo para personas adultas mayores en Nuevo León. En la
 |---|---|
 | Elihu Osuna | Proyecto en Vite, rutas (`App.jsx`), contexto de sesión, rutas protegidas, encabezado y pie, base de datos en Supabase (esquema, políticas RLS y datos de ejemplo), publicación en Vercel y README |
 | Gustavo Treviño | Flujo del candidato: listado con búsqueda y filtros, detalle de vacante, postularse, Mis solicitudes con cancelación, y los componentes de tarjeta, botón, estatus y avisos |
-| Omar Villareal | Formularios: inicio de sesión, registro de candidato y de empresa, Mi cuenta; flujo de la empresa (Mis vacantes, Publicar vacante, Solicitudes recibidas) y panel de AMAC para aprobar candidatos |
+| Omar Villarreal | Formularios: inicio de sesión, registro de candidato y de empresa, Mi cuenta; flujo de la empresa (Mis vacantes, Publicar vacante, Solicitudes recibidas) y panel de AMAC para aprobar candidatos |
 
 ## Cuentas de prueba
 
