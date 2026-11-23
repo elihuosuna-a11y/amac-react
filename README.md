@@ -1,45 +1,46 @@
-# AMAC: Plataforma de empleo
+# AMAC - Bolsa de trabajo para adultos mayores
 
 Proyecto final de Desarrollo de Aplicaciones Web (OT2026-WEB), Entrega 3.
 
-AMAC es una bolsa de trabajo para personas adultas mayores en Nuevo León. En la Entrega 1 hicimos el prototipo en Figma y en la Entrega 2 lo pasamos a HTML y CSS. En esta entrega final se volvió una aplicación real: el frontend está hecho en React, los datos se guardan en una base de datos PostgreSQL en Supabase (con inicio de sesión y seguridad por fila) y la app está publicada en Vercel.
+AMAC es una bolsa de trabajo pensada para personas adultas mayores de Nuevo León. Empezamos con el prototipo en Figma (Entrega 1), después lo pasamos a HTML y CSS (Entrega 2) y en esta última entrega lo convertimos en una aplicación que ya funciona de verdad. El frontend está hecho en React, la información se guarda en Supabase y la página está publicada en Vercel.
 
-**Aplicación publicada:** https://TU-URL.vercel.app
-
-**Repositorio:** https://github.com/elihuosuna-a11y/amac-react
-
-**Video de la presentación:** ENLACE-AL-VIDEO
-
-**Diapositivas:** ENLACE-A-LAS-DIAPOSITIVAS
+- Aplicación: https://amac-react-opal.vercel.app
+- Repositorio: https://github.com/elihuosuna-a11y/amac-react
+- Video: ENLACE-AL-VIDEO
+- Diapositivas: ENLACE-A-LAS-DIAPOSITIVAS
 
 ## Equipo
 
 | Integrante | Qué hizo |
 |---|---|
-| Elihu Osuna | Proyecto en Vite, rutas (`App.jsx`), contexto de sesión, rutas protegidas, encabezado y pie, base de datos en Supabase (esquema, políticas RLS y datos de ejemplo), publicación en Vercel y README |
-| Gustavo Treviño | Flujo del candidato: listado con búsqueda y filtros, detalle de vacante, postularse, Mis solicitudes con cancelación, y los componentes de tarjeta, botón, estatus y avisos |
-| Omar Villarreal | Formularios: inicio de sesión, registro de candidato y de empresa, Mi cuenta; flujo de la empresa (Mis vacantes, Publicar vacante, Solicitudes recibidas) y panel de AMAC para aprobar candidatos |
+| Elihu Osuna | Armó el proyecto con Vite, las rutas, el manejo de la sesión, las rutas protegidas, el encabezado y el pie. También hizo la base de datos en Supabase, la publicación en Vercel y este README. |
+| Gustavo Treviño | Hizo todo lo del candidato: el listado con búsqueda y filtros, el detalle de cada vacante, postularse y la página de Mis solicitudes. También los componentes de tarjeta, botón, estatus y avisos. |
+| Omar Villareal | Hizo los formularios (iniciar sesión, registro de candidato y de empresa, Mi cuenta), todo lo de la empresa (Mis vacantes, Publicar vacante y Solicitudes recibidas) y el panel donde AMAC aprueba candidatos. |
 
-## Cuentas de prueba
+## Cuentas para probar
 
-| Tipo | Correo | Contraseña |
-|---|---|---|
-| Candidato aprobado | candidato.aprobado@amac-prueba.com | AmacDemo2026 |
-| Candidato sin aprobar | candidato.pendiente@amac-prueba.com | AmacDemo2026 |
-| Empresa | empresa.demo@amac-prueba.com | AmacDemo2026 |
-| Administrador de AMAC (extra) | admin@amac-prueba.com | AmacDemo2026 |
+Todas usan la contraseña `AmacDemo2026`.
 
-## Tecnologías
+| Quién | Correo |
+|---|---|
+| María Guadalupe Treviño, candidata ya aprobada | maria.trevino@correo-prueba.mx |
+| José Luis Garza, candidato que AMAC todavía no aprueba | jose.garza@correo-prueba.mx |
+| Servicios Integrales del Norte, empresa | rh@serviciosdelnorte.mx |
+| Coordinación AMAC, administrador | coordinacion@amac-nl.mx |
 
-- **React 19 con Vite** para el frontend (una sola página con rutas).
-- **React Router** para las rutas y las rutas protegidas por rol.
-- **Supabase**: PostgreSQL, inicio de sesión (Auth) y seguridad por fila (RLS).
-- **Vercel** para publicar la app con HTTPS; cada `git push` a `main` publica una nueva versión.
-- **CSS propio** de la Entrega 2 (sin Bootstrap ni Tailwind), separado en `variables.css`, `base.css`, `layout.css`, `componentes.css` y `app.css`.
+Con José se puede ver que un candidato sin aprobar no puede postularse. Si entras como Coordinación AMAC y lo apruebas, ya puede hacerlo.
+
+## Con qué lo hicimos
+
+- React 19 con Vite
+- React Router para las páginas y para limitar qué puede ver cada tipo de usuario
+- Supabase para la base de datos (PostgreSQL), las cuentas de usuario y las reglas de seguridad
+- Vercel para publicarla; cada vez que subimos cambios a `main` se actualiza sola
+- El mismo CSS que hicimos en la Entrega 2, sin Bootstrap ni Tailwind
 
 ## Cómo correrlo en tu computadora
 
-Necesitas Node.js 20 o más reciente (`node -v`).
+Necesitas tener Node.js 20 o más nuevo.
 
 ```bash
 git clone https://github.com/elihuosuna-a11y/amac-react.git
@@ -47,81 +48,77 @@ cd amac-react
 npm install
 ```
 
-Copia el archivo `.env.example` como `.env.local` y pon los datos de tu proyecto de Supabase (Project Settings → API Keys):
+Haz una copia de `.env.example`, llámala `.env.local` y pon ahí la URL y la publishable key de tu proyecto de Supabase (están en Project Settings → API Keys):
 
 ```
 VITE_SUPABASE_URL=https://xxxxxxxx.supabase.co
 VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_xxxxxxxx
 ```
 
-Después:
+Luego corre:
 
 ```bash
 npm run dev
 ```
 
-y abre http://localhost:5173. El archivo `.env.local` está en `.gitignore` y nunca se sube a GitHub.
+y entra a http://localhost:5173. El `.env.local` no se sube a GitHub porque está en el `.gitignore`.
 
-Para crear la base de datos desde cero: en Supabase → SQL Editor, corre `supabase/esquema.sql`; luego crea las cuentas de prueba desde la app y corre `supabase/datos-ejemplo.sql` para cargar las vacantes y aprobar al candidato de prueba.
+Si quieres armar la base de datos desde cero, en Supabase ve a SQL Editor y corre `supabase/esquema.sql`. Después crea las cuatro cuentas desde la página y al final corre `supabase/datos-ejemplo.sql`, que agrega las vacantes de ejemplo, aprueba a María y le da permisos de administrador a la cuenta de AMAC.
 
-## Cómo está organizado
+## Cómo está organizado el código
 
 ```
 src/
-├── main.jsx                 punto de entrada: BrowserRouter + AuthProvider
-├── App.jsx                  definición de las rutas
-├── lib/supabase.js          cliente de Supabase (solo la publishable key)
-├── context/AuthContext.jsx  quién está conectado y con qué rol
-├── components/              piezas reutilizables
-├── pages/                   una página por ruta
-├── utils/                   formato de fechas y sueldos, validaciones
-└── styles/                  CSS de la Entrega 2 + lo nuevo de esta entrega
+├── main.jsx                 donde arranca la app
+├── App.jsx                  todas las rutas
+├── lib/supabase.js          conexión con Supabase
+├── context/AuthContext.jsx  quién inició sesión y qué rol tiene
+├── components/              piezas que se reusan en varias páginas
+├── pages/                   una página por cada ruta
+├── utils/                   formatos de fecha, sueldo y teléfono, y validaciones
+└── styles/                  el CSS de la Entrega 2 y lo que agregamos ahora
 supabase/
-├── esquema.sql              tablas, funciones, trigger y políticas RLS
-└── datos-ejemplo.sql        vacantes de ejemplo y aprobación del candidato de prueba
+├── esquema.sql              tablas, funciones y reglas de seguridad
+└── datos-ejemplo.sql        vacantes de ejemplo y aprobación de las cuentas de prueba
 ```
 
-### Rutas
+### Páginas
 
-| Ruta | Página | Quién entra |
+| Ruta | Página | Quién puede entrar |
 |---|---|---|
-| `/` | Listado de vacantes | Todos |
-| `/vacantes/:id` | Detalle de vacante | Todos |
-| `/login` | Iniciar sesión | Todos |
-| `/registro` | Registro de candidato | Todos |
-| `/registro-empresa` | Registro de empresa | Todos |
-| `/conoce-amac` | Conoce a AMAC | Todos |
-| `/cuenta` | Mi cuenta y cerrar sesión | Con sesión |
-| `/mis-solicitudes` | Mis solicitudes | Candidato |
-| `/empresa/vacantes` | Mis vacantes | Empresa |
-| `/empresa/publicar` | Publicar vacante | Empresa |
-| `/empresa/solicitudes` | Solicitudes recibidas | Empresa |
-| `/admin` | Aprobar candidatos | Administrador |
+| `/` | Listado de vacantes | Cualquiera |
+| `/vacantes/:id` | Detalle de una vacante | Cualquiera |
+| `/login` | Iniciar sesión | Cualquiera |
+| `/registro` | Registro de candidato | Cualquiera |
+| `/registro-empresa` | Registro de empresa | Cualquiera |
+| `/conoce-amac` | Conoce a AMAC | Cualquiera |
+| `/cuenta` | Mi cuenta | Quien haya iniciado sesión |
+| `/mis-solicitudes` | Mis solicitudes | Candidatos |
+| `/empresa/vacantes` | Mis vacantes | Empresas |
+| `/empresa/publicar` | Publicar vacante | Empresas |
+| `/empresa/solicitudes` | Solicitudes recibidas | Empresas |
+| `/admin` | Aprobar candidatos | AMAC |
 
-Si alguien sin sesión entra a una ruta protegida, lo manda a `/login`; si entra con otro rol, lo manda al inicio. El archivo `vercel.json` hace que estas rutas funcionen aunque se recargue la página.
+Si alguien intenta entrar a una página que no le toca, lo regresamos al inicio de sesión o a la página principal. El `vercel.json` hace que estas rutas funcionen aunque se recargue la página; sin él Vercel daría error 404.
 
-### Componentes reutilizables
+### Componentes
 
-Las clases que en la Entrega 2 se repetían ahora son componentes:
+Muchas cosas que en la Entrega 2 copiábamos y pegábamos en cada página ahora son componentes:
 
-| Componente | Para qué sirve |
-|---|---|
-| `Boton` | Botón o enlace con las variantes primario, secundario, peligro y coral |
-| `TarjetaVacante` | Tarjeta del listado (recibe la vacante por props) |
-| `EtiquetaEstatus` | Estatus con ícono y palabra: Enviada, En revisión, Aceptada, Rechazada, Cancelada, Activa, Pausada, Cerrada |
-| `Campo` y `Casilla` | Campos de formulario con etiqueta visible, ayuda y mensaje de error |
-| `Aviso` | Mensajes de éxito, error, advertencia e información |
-| `Encabezado` y `Pie` | Encabezado con menú según el rol (abajo en celular) y pie de página |
-| `RutaProtegida` | Esconde páginas según el rol |
-| `TituloPagina`, `SeccionFormulario`, `TarjetaAyuda`, `EnlaceRegresar`, `BotonAyuda`, `Logo`, `Icono`, `Cargando` | Piezas de diseño que se repiten |
+- `Boton`: botones y enlaces con los estilos primario, secundario, peligro y coral.
+- `TarjetaVacante`: la tarjeta de cada vacante en el listado.
+- `EtiquetaEstatus`: muestra el estatus con ícono y texto, para no depender solo del color.
+- `Campo` y `Casilla`: campos de formulario con su etiqueta, texto de ayuda y mensaje de error.
+- `Aviso`: mensajes de éxito, error, advertencia o información.
+- `Encabezado` y `Pie`: el menú cambia según el tipo de usuario y en celular se va a la parte de abajo.
+- `RutaProtegida`: revisa el rol antes de mostrar una página.
+- Otros más pequeños como `TituloPagina`, `SeccionFormulario`, `TarjetaAyuda`, `EnlaceRegresar`, `BotonAyuda`, `Logo`, `Icono` y `Cargando`.
 
-`useState` guarda lo que cambia en cada página (búsqueda, filtros, formularios, mensajes) y `useEffect` consulta a Supabase cuando cambian esos valores. El contexto `AuthContext` guarda la sesión y el perfil (rol, nombre, si está aprobado) para que cualquier componente los use con `useAuth()`.
+En cada página usamos `useState` para la búsqueda, los filtros, los formularios y los mensajes, y `useEffect` para pedir los datos a Supabase cuando algo cambia. La sesión y el perfil del usuario viven en `AuthContext`, así cualquier componente puede saber quién está conectado con `useAuth()`.
 
 ## Base de datos
 
 ![Diagrama de la base de datos](docs/diagrama-bd.png)
-
-*(Captura de Supabase → Database → Schema Visualizer.)*
 
 ```mermaid
 erDiagram
@@ -162,82 +159,82 @@ erDiagram
     }
 ```
 
-Tres tablas:
+Usamos tres tablas:
 
-- **perfiles**: un perfil por cada usuario de Supabase Auth. Se crea solo al registrarse, con el trigger `crear_perfil()`. Las contraseñas no están aquí: las maneja Supabase Auth.
-- **vacantes**: cada vacante pertenece a una empresa.
-- **solicitudes**: une a un candidato con una vacante. La restricción `unique (vacante_id, candidato_id)` impide postularse dos veces a la misma vacante.
+- **perfiles** guarda los datos de cada usuario. Se crea sola cuando alguien se registra, gracias a un trigger. Las contraseñas no se guardan aquí, de eso se encarga Supabase.
+- **vacantes** guarda las vacantes, y cada una pertenece a una empresa.
+- **solicitudes** guarda cada vez que un candidato se postula a una vacante. Pusimos una restricción para que nadie pueda postularse dos veces a la misma.
 
-El SQL completo está en [`supabase/esquema.sql`](supabase/esquema.sql).
+Todo el SQL está en [`supabase/esquema.sql`](supabase/esquema.sql).
 
-### Políticas de seguridad (RLS)
+### Reglas de seguridad (RLS)
 
-RLS está activado en las tres tablas. Aunque alguien manipule el navegador o use la consola, PostgreSQL solo le entrega o le deja cambiar las filas que estas reglas permiten.
+Activamos RLS en las tres tablas. Esto quiere decir que la base de datos revisa quién está haciendo cada consulta, así que aunque alguien intente saltarse la página desde la consola del navegador, solo puede ver o cambiar lo que le corresponde.
 
 **perfiles**
 
-| Política | Qué hace |
+| Regla | Para qué la pusimos |
 |---|---|
-| Cada quien ve su perfil | Un usuario solo puede leer su propio perfil |
-| Todos ven los perfiles de empresas | Para mostrar el nombre de la empresa en las vacantes |
-| La empresa ve a quien aplicó a sus vacantes | La empresa solo ve los datos de candidatos que se postularon con ella |
-| AMAC ve todos los perfiles | El administrador puede revisar a los candidatos para aprobarlos |
-| Cada quien edita su perfil | Solo puede cambiar sus datos, y nunca su `rol` ni `aprobado` (se quitaron esos permisos de columna) |
+| Cada quien ve su perfil | Nadie puede ver los datos personales de otro usuario |
+| Todos ven los perfiles de empresas | Para mostrar el nombre de la empresa en cada vacante |
+| La empresa ve a quien aplicó a sus vacantes | La empresa solo ve a los candidatos que se postularon con ella |
+| AMAC ve todos los perfiles | Para que el administrador pueda revisar y aprobar candidatos |
+| Cada quien edita su perfil | Puede cambiar sus datos, pero no su rol ni si está aprobado |
 
 **vacantes**
 
-| Política | Qué hace |
+| Regla | Para qué la pusimos |
 |---|---|
-| Ver vacantes activas o las propias | El público solo ve vacantes activas; la empresa también ve las suyas pausadas o cerradas |
-| El candidato sigue viendo las vacantes a las que aplicó | Aunque la vacante se pause, en Mis solicitudes se sigue viendo (RF-021) |
-| Solo empresas publican, a su nombre | Un candidato no puede publicar y una empresa no puede publicar a nombre de otra |
-| La empresa edita sus vacantes | Solo la dueña puede pausar, reactivar o cerrar |
+| Ver vacantes activas o las propias | El público solo ve las activas; la empresa también ve sus pausadas y cerradas |
+| El candidato sigue viendo las vacantes a las que aplicó | Si la empresa pausa una vacante, el candidato todavía la ve en Mis solicitudes |
+| Solo empresas publican, a su nombre | Un candidato no puede publicar, y una empresa no puede publicar a nombre de otra |
+| La empresa edita sus vacantes | Solo la empresa dueña puede pausarla, reactivarla o cerrarla |
 
 **solicitudes**
 
-| Política | Qué hace |
+| Regla | Para qué la pusimos |
 |---|---|
-| Candidato ve las suyas; empresa ve las de sus vacantes | Nadie ve solicitudes ajenas |
-| Solo candidatos aprobados se postulan a vacantes activas | Bloquea a candidatos que AMAC no ha aprobado (RF-054), a nombre de otro, con un estatus distinto de "Enviada" o a vacantes pausadas |
-| Candidato cancela si no está resuelta | Solo puede pasarla a "Cancelada" si está "Enviada" o "En revisión" (RF-006) |
-| Empresa cambia el estatus | Solo a "En revisión", "Aceptada" o "Rechazada", y nunca una cancelada (RF-024) |
+| Candidato ve las suyas; empresa ve las de sus vacantes | Nadie ve solicitudes de otros |
+| Solo candidatos aprobados se postulan a vacantes activas | Si AMAC no ha aprobado al candidato o la vacante no está activa, no se puede postular |
+| Candidato cancela si no está resuelta | Solo puede cancelar mientras esté "Enviada" o "En revisión" |
+| Empresa cambia el estatus | Puede pasarla a "En revisión", "Aceptada" o "Rechazada", pero no tocar una cancelada |
 
-Además, de una solicitud solo se puede modificar la columna `estatus`, y el campo `aprobado` solo lo cambia la función `cambiar_aprobacion()`, que revisa que quien la llama sea administrador.
+Además, de una solicitud solo se puede cambiar el estatus, y para aprobar a un candidato hay que pasar por la función `cambiar_aprobacion()`, que primero revisa que quien la usa sea de AMAC.
 
-## Requerimientos implementados
+## Requerimientos
 
-| RF | Descripción | Estado |
+| RF | Qué se pedía | Estado |
 |---|---|---|
-| RF-001 | Listado de vacantes activas desde la base de datos | ✅ completo |
-| RF-002, RF-007 | Búsqueda por título o ubicación y filtros por horario y categoría | ✅ completo |
-| RF-003 | Detalle de la vacante | ✅ completo |
-| RF-051 | Botón "Llamar" solo si la vacante tiene teléfono | ✅ completo |
-| RF-011, RF-012, RF-013 | Registro de candidato con términos obligatorios | ✅ completo |
-| RF-008, RF-009 | Inicio y cierre de sesión con mensaje de error genérico | ✅ completo |
-| RF-004 | Postularse con confirmación, sin poder aplicar dos veces | ✅ completo |
-| RF-054 | Solo candidatos aprobados se postulan | ✅ completo |
-| RF-005, RF-006 | Mis solicitudes y cancelar con confirmación (no Aceptada ni Rechazada) | ✅ completo |
-| RF-015 | Registro de empresa (versión simplificada) | ✅ completo |
-| RF-019 | Publicar vacante con validación; teléfono solo si se elige | ✅ completo |
-| RF-020, RF-021 | Mis vacantes con número de solicitudes; pausar, reactivar y cerrar | ✅ completo |
-| RF-022, RF-024 | Solicitudes recibidas y cambio de estatus | ✅ completo |
-| RF-010 | Rutas protegidas por rol y RLS en todas las tablas | ✅ completo |
-| RF-054 (extra) | Panel de administrador para aprobar candidatos | ✅ completo |
-| RF-024 (extra) | Fecha del último cambio de estatus | ✅ completo |
-| RF-014, RF-017 | Editar perfil | ❌ pendiente |
-| RF-016 | Logo de empresa con Supabase Storage | ❌ pendiente |
-| RF-029 | Recuperar contraseña | 🟡 parcial: se indica llamar a AMAC |
-| RF-041 | Vacantes favoritas | ❌ pendiente |
-| RF-055 | Proceso de selección por etapas | 🟡 parcial: se muestran pasos generales en el detalle |
+| RF-001 | Ver las vacantes activas desde la base de datos | Hecho |
+| RF-002, RF-007 | Buscar por puesto o lugar y filtrar por horario y categoría | Hecho |
+| RF-003 | Ver el detalle de una vacante | Hecho |
+| RF-051 | Botón de "Llamar" solo cuando la vacante tiene teléfono | Hecho |
+| RF-011, RF-012, RF-013 | Registro de candidato aceptando términos | Hecho |
+| RF-008, RF-009 | Iniciar y cerrar sesión, con un mensaje de error que no revela si el correo existe | Hecho |
+| RF-004 | Postularse con confirmación y sin poder repetir | Hecho |
+| RF-054 | Solo pueden postularse los candidatos aprobados por AMAC | Hecho |
+| RF-005, RF-006 | Ver mis solicitudes y cancelarlas si todavía no tienen respuesta | Hecho |
+| RF-015 | Registro de empresa (versión sencilla) | Hecho |
+| RF-019 | Publicar vacante con validación; el teléfono solo es obligatorio si se elige como forma de contacto | Hecho |
+| RF-020, RF-021 | Ver mis vacantes con cuántas solicitudes tienen, y pausarlas, reactivarlas o cerrarlas | Hecho |
+| RF-022, RF-024 | Ver las solicitudes recibidas y cambiarles el estatus | Hecho |
+| RF-010 | Páginas protegidas por rol y RLS en todas las tablas | Hecho |
+| RF-054 (extra) | Panel para que AMAC apruebe candidatos | Hecho |
+| RF-024 (extra) | Mostrar la fecha del último cambio de estatus | Hecho |
+| RF-029 | Recuperar contraseña | A medias, por ahora se le pide a la persona que llame a AMAC |
+| RF-055 | Proceso de selección por etapas | A medias, en el detalle se explican los pasos generales |
+| RF-014, RF-017 | Editar perfil | Pendiente |
+| RF-016 | Logo de la empresa | Pendiente |
+| RF-041 | Guardar vacantes favoritas | Pendiente |
 
-## Accesibilidad y diseño responsivo
+## Accesibilidad y diseño en distintas pantallas
 
-Se mantuvo lo de la Entrega 2: letra de 18 px o más, botones de al menos 44 px, etiquetas visibles en todos los campos, foco visible al usar el teclado, estatus con ícono y palabra, y menú inferior en celular. En React además:
+Mantuvimos lo que ya teníamos en la Entrega 2: letra de al menos 18 px, botones de 44 px o más, etiquetas visibles en todos los campos, foco visible al navegar con el teclado, estatus con ícono y texto, y el menú abajo en celular. Con React agregamos algunas cosas:
 
-- Al cambiar de página, el foco pasa al contenido y el título de la pestaña cambia.
-- Los errores de los formularios aparecen junto a cada campo y el foco va al primero que hay que corregir.
-- Las confirmaciones (postularse, cancelar, cerrar vacante) aparecen en la misma pantalla.
+- Al cambiar de página, el foco se mueve al contenido y el título de la pestaña se actualiza.
+- Si un formulario tiene errores, cada uno aparece junto a su campo y el cursor se va al primero.
+- Las confirmaciones, como postularse o cerrar una vacante, aparecen en la misma pantalla en lugar de ventanas emergentes.
 
-Probado en 320, 768, 1024 y 1440 px.
+Lo revisamos en anchos de 320, 768, 1024 y 1440 px.
 
 ![Resultado de Lighthouse](docs/lighthouse.png)
